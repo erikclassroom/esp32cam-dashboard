@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="Format.css"> 
+	<script type="text/javascript" src="jquery-3.7.0.js"></script>
+</head>
+<body>
+
+<table class="heading">
+	<tr>
+		<td class="badge">
+		<center><img style="display:block;" src="Badge.png"></center>
+
+		</td>
+	</tr>
+	<tr>
+		<td><h1 class="title">Ecosystem Monitoring System</h1></td>
+	</tr>
+</table>	
+
+<table style="height:85%; width:100%;">
+	<tr>
+		<td class="ltd"><table class="stable">
+			<tr><td class="std">
+								<table class="mtable2">
+									<tr><th class="mth">Real-time Video</th></tr>
+									<tr><td class="mtd">
+									
+									<!--use for single client with adjustable settings-->									
+									<!--img class="video" src="http://192.168.1.135:81/stream" crossorigin></img-->
+									
+									<!--use for multi-client with no latency-->	
+									<img class="video" src="http://192.168.90.221/stream" crossorigin></img-->
+										</td>
+									</tr>
+								</table>
+							</td>
+			</tr>
+			<tr><td></td></tr>
+			</table>
+		</td>		
+		
+		<td class="ltd"><table class="stable">
+			<tr class="str"><td class="std">
+								<table class="mtable">
+									<tr><th class="mth">Room Temperature</th></tr>
+									<tr><td class="mtd" id="rTemp">°C</td></tr></table>
+							</td>
+							<td class="std">
+								<table class="mtable">
+									<tr><th class="mth">Water Temperature</th></tr>
+									<tr><td class="mtd" id="wTemp">°C</td></tr></table>
+							</td>
+			</tr>
+			
+			<tr class="str"><td class="std">
+								<table class="mtable">
+									<tr><th class="mth">Room Humidity</th></tr>
+									<tr><td class="mtd" id="humid">%</td></tr></table>
+							</td>
+							<td class="std">
+								<table class="mtable">
+									<tr><th class="mth">Room Light Intensity</th></tr>
+									<tr><td class="mtd" id="light">units</td></tr></table>
+							</td>
+			</tr>
+			
+			<tr class="str"><td class="std">
+								<table class="mtable">
+									<tr><th class="mth">TDS Water Quality</th></tr>
+									<tr><td class="mtd" id="waterTDS">mg/L</td></tr></table>
+							</td>
+							<td class="std">
+								<table class="mtable">
+									<tr><th class="mth">Room UV</th></tr>
+									<tr><td class="mtd" id="uv">mW/cm2</td></tr></table>
+							</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<script>
+	/*var video = document.querySelector("#videoElement");
+
+	if (navigator.mediaDevices.getUserMedia) {
+		navigator.mediaDevices.getUserMedia({ video: true })
+		.then(function (stream) {video.srcObject = stream;})
+		.catch(function (err0r) {console.log("Something went wrong!");});
+	}
+	//
+	
+	let testText = document.getElementById("testing");*/
+</script>
+
+<script type="text/javascript">
+        $(document).ready(function ()
+        {
+            GetData();
+        });
+
+        function GetData()
+        {
+            var url = 'https://api.thingspeak.com/channels/1906994/feeds.json?results=1';
+			
+            $.ajax
+            ({
+                url: url,
+                type: 'GET',
+                contentType: "application/json",
+                success: function (data, textStatus, xhr) {
+                    $.each(data, function (i, item) {
+                        if (i == 'feeds') {
+                            var ubound = item.length;
+                            //document.getElementById("testing").innerHTML = item[ubound - 1].field1 + 'units'; 
+							document.getElementById("waterTDS").innerHTML = Number(item[ubound - 1].field1).toFixed(0) + ' mg/L'; 
+							document.getElementById("wTemp").innerHTML = Number(item[ubound - 1].field2).toFixed(1) + ' °C'; 
+							document.getElementById("rTemp").innerHTML = Number(item[ubound - 1].field3).toFixed(1) + ' °C'; 
+							document.getElementById("light").innerHTML = Number(item[ubound - 1].field4).toFixed(0) + ' units'; 
+							document.getElementById("humid").innerHTML = Number(item[ubound - 1].field5).toFixed(1) + ' %'; 
+							document.getElementById("uv").innerHTML = Number(item[ubound - 1].field6).toFixed(2) + ' mW/cm2'; 						
+                        }
+                    });
+                },
+                /*error: function (xhr, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }*/
+            });
+
+            setTimeout(GetData, 10000);
+        }
+    </script>
+	
+</body>
+</html>
+
+<!-- <td style="height:100%; width:100%; border-radius: 25px; border: 2px solid #73AD21;"> -->

@@ -1,0 +1,104 @@
+html,body {
+    height:100%;
+	width:100%;
+	margin: 0px;
+}
+
+table {
+	border-spacing: 0px;
+}
+
+td {
+	padding: 0;
+}
+
+h1 {
+	width:100%;
+	margin:0;
+	color: white;
+	font-size: 1.5vw;
+}
+
+.heading {
+	height:15%; 
+	width:100%; 
+	margin:0;
+	padding:0;
+	background-color:#003186;
+	border-bottom: 2.5px solid #0E4D92;
+}
+
+.title {
+	text-align:center; 
+	font-family: "Arial";
+}
+
+.badge {
+	height: 60%;
+}
+
+.badge img {
+	height: 12.5%;
+	width: 12.5%;
+}
+
+.ltd {
+	width:50%;
+}
+
+.stable {
+	height:100%; 
+	width: 100%;
+}
+
+.str {
+	height:33%;
+	margin: 0px;
+}
+
+.std {
+	width:50%;
+	margin: 6.25px;
+	padding: 6.25px;  
+}
+
+.mtable {
+	margin: 0px;
+	padding: 0px;
+	height:100%;
+	width:100%;
+	border-radius: 25px;  
+	border: 2.5px solid #0E4D92; 
+    border-spacing:0;
+}
+
+.mtable2 {
+	margin: 0px;
+	padding: 0px;
+	height:100%;
+	width:100%;
+	border-radius: 25px 25px 12.5px 12.5px;  
+	border: 2.5px solid #0E4D92; 
+    border-spacing:0;
+}
+.mth {
+	height:20%;	
+	border-radius: 20px 20px 0px 0px;  
+	border-bottom: 2.5px solid #0E4D92; 	
+	background:#3388FF;
+	color: white;
+	font-size: 2vw;
+	font-family: "Arial";
+}
+
+.mtd {
+	text-align: center;
+	font-size: 3vw;
+	font-family: "Arial";
+}
+
+.video {
+	width: 85%; 
+	height: 85%;
+	border: 5;
+}
